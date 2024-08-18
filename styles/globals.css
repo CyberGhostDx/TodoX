@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  div[data-slot="calendar"] span[data-today="true"] {
+    @apply bg-blue-400 text-white;
+  }
+}
+
+.color-picker .react-colorful__saturation-pointer {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+}
+.color-picker .react-colorful__hue-pointer {
+  width: 16px;
+  border-radius: 3px;
+}
