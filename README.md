@@ -22,3 +22,11 @@ npm i
 ```bash
 npm run dev
 ```
+
+### Future Feature
+
+- Remind Notification
+- Full Responsive
+- PWA (Progressive Web App)
+- Group Task By Date
+- Filter Task with Star (importance)
