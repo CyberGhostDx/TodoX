@@ -42,6 +42,7 @@ const AddTagButton = () => {
     if (tags.find((t) => t.name == tagName)) return setIsInvalidName(true)
     const newTag = { name: tagName, color: `#${color}` as Color }
     setIsInvalidName(false)
+    setColor("")
     onClosePopover()
     dispatch(addTag(newTag))
     const oldTags = JSON.parse(localStorage.getItem("tags") || "[]")
