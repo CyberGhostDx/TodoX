@@ -2,7 +2,7 @@
 
 ---
 
-> This project is currently in deveopment.
+> This project is currently in development.
 
 ### Stack
 

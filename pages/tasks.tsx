@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo } from "react"
 import Sidebar from "@/components/Sidebar"
 import { TaskBox } from "@/components/Task"
+import TaskBoxByDate from "@/components/Task/TaskBoxByDate"
 import { Button } from "@nextui-org/button"
 import { useState } from "react"
-import { SharedSelection } from "@nextui-org/system"
 import {
   Dropdown,
   DropdownTrigger,
@@ -14,17 +14,26 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline"
 import { useAppDispatch, useAppSelector } from "@/libs/hooks"
 import { setTask } from "@/store/features/tasksSlice"
 import { setTag } from "@/store/features/tagsSlice"
+import groupTaskByDate from "@/libs/groupTaskDate"
 
 const Tasks = () => {
-  const [selectedKeys, setSelectedKeys] = useState<string>("categories")
+  const [selectedKeys, setSelectedKeys] = useState<Set<string>>(
+    new Set(["categories"]),
+  )
   const tasks = useAppSelector((state) => state.tasks)
   const categoryFilter = useAppSelector((state) => state.categoryFilter)
   const dispatch = useAppDispatch()
+
+  const handleSelectChange = (key: React.Key) => {
+    setSelectedKeys(new Set([key.toString()]))
+  }
 
   const categories = useMemo(
     () => tasks.filter((category) => !categoryFilter.includes(category.name)),
     [tasks, categoryFilter],
   )
+
+  const groupByDate = useMemo(() => groupTaskByDate(tasks), [tasks])
 
   useEffect(() => {
     const taskStr = localStorage.getItem("tasks") || JSON.stringify([])
@@ -51,18 +60,24 @@ const Tasks = () => {
           <DropdownMenu
             selectionMode="single"
             selectedKeys={selectedKeys}
-            onSelectionChange={
-              setSelectedKeys as (key: SharedSelection) => void
-            }
+            onAction={handleSelectChange}
           >
             <DropdownItem key="categories">Categories</DropdownItem>
             <DropdownItem key="date">Date</DropdownItem>
           </DropdownMenu>
         </Dropdown>
         <div className="w-fit grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {categories.map((category) => (
-            <TaskBox name={category.name} key={category.name} />
-          ))}
+          {selectedKeys.has("date")
+            ? groupByDate.map((category) => (
+                <TaskBoxByDate
+                  name={category.name}
+                  key={category.name}
+                  tasks={category.tasks}
+                />
+              ))
+            : categories.map((category) => (
+                <TaskBox name={category.name} key={category.name} />
+              ))}
         </div>
       </div>
     </div>

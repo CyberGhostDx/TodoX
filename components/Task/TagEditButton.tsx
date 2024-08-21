@@ -45,7 +45,11 @@ const TagEditButton: React.FC<Props> = ({
     if (!newTagName) return
     if (tags.find((t) => t.name == newTagName) && newTagName != tagName)
       return setIsInvalidName(true)
-    const newTag = { name: newTagName, color: `#${color}` as Color }
+    const newTag = {
+      oldName: tagName,
+      name: newTagName,
+      color: `#${color}` as Color,
+    }
     setIsInvalidName(false)
     onClose()
     dispatch(editTag(newTag))

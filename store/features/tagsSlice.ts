@@ -21,10 +21,10 @@ const tagsSlice = createSlice({
       const nextState = [...state].filter((t) => t.name != tagName)
       return nextState
     },
-    editTag: (state, action: PayloadAction<Tag>) => {
-      const { name: tagName, color: tagColor } = action.payload
+    editTag: (state, action: PayloadAction<Tag & { oldName: string }>) => {
+      const { oldName, name: tagName, color: tagColor } = action.payload
       const nextState = produce(state, (drafState) => {
-        const tagIndex = drafState.findIndex((t) => t.name == tagName)
+        const tagIndex = drafState.findIndex((t) => t.name == oldName)
         drafState[tagIndex].name = tagName
         drafState[tagIndex].color = tagColor
       })

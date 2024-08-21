@@ -20,6 +20,7 @@ export type TaskCategory = {
 }
 
 export type Tag = {
+  id: string
   name: string
   color: Color
 }
