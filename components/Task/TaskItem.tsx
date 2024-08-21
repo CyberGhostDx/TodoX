@@ -18,10 +18,7 @@ const TaskItem: React.FC<Props> = ({ categoryName, task }) => {
   const dispatch = useAppDispatch()
   const tags = useAppSelector((state) => state.tags)
 
-  const color = useMemo(
-    () => tags.find((t) => t.name == task.tag)?.color,
-    [tags, task],
-  )
+  const tag = useMemo(() => tags.find((t) => t.id == task.tag), [tags, task])
 
   const handleSetTaskDone = (taskID: string) => {
     dispatch(setTaskDone({ category: categoryName, taskID }))
@@ -104,15 +101,15 @@ const TaskItem: React.FC<Props> = ({ categoryName, task }) => {
             {formatDate(task.date)}
           </div>
         )}
-        {task.tag && (
+        {tag && (
           <div
             className="rounded-xl h-5 border-2 text-xs w-fit flex justify-center items-center px-2 text-white"
             style={{
-              backgroundColor: color,
-              borderColor: color,
+              backgroundColor: tag.color,
+              borderColor: tag.color,
             }}
           >
-            {task.tag}
+            {tag.name}
           </div>
         )}
       </div>

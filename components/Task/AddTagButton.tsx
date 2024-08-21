@@ -12,6 +12,7 @@ import { PlusIcon } from "@heroicons/react/24/outline"
 import { addTag } from "@/store/features/tagsSlice"
 import { HexColorPicker } from "react-colorful"
 import { Tag, Color } from "@/types"
+import { v7 as uuid } from "uuid"
 
 const AddTagButton = () => {
   const dispatch = useAppDispatch()
@@ -40,7 +41,7 @@ const AddTagButton = () => {
     const { value: tagName } = newTagName.current
     if (!tagName) return
     if (tags.find((t) => t.name == tagName)) return setIsInvalidName(true)
-    const newTag = { name: tagName, color: `#${color}` as Color }
+    const newTag = { id: uuid(), name: tagName, color: `#${color}` as Color }
     setIsInvalidName(false)
     setColor("")
     onClosePopover()

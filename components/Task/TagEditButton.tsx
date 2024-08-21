@@ -20,7 +20,7 @@ type Props = {
 }
 
 const TagEditButton: React.FC<Props> = ({
-  tag: { name: tagName, color: tagColor },
+  tag: { id: tagID, name: tagName, color: tagColor },
 }) => {
   const dispatch = useAppDispatch()
   const tags = useAppSelector((state) => state.tags)
@@ -46,6 +46,7 @@ const TagEditButton: React.FC<Props> = ({
     if (tags.find((t) => t.name == newTagName) && newTagName != tagName)
       return setIsInvalidName(true)
     const newTag = {
+      id: tagID,
       oldName: tagName,
       name: newTagName,
       color: `#${color}` as Color,

@@ -43,7 +43,7 @@ const TaskEditButton: React.FC<Props> = ({ categoryName, task }) => {
       id: task.id,
       name: taskName,
       note: taskNote,
-      tag: taskTag,
+      tag: tags.find((tag) => tag.name == taskTag)?.id || "",
       date: taskDate,
       starred: task.starred,
       done: task.done,
