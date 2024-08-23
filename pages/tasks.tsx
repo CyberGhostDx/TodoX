@@ -60,7 +60,7 @@ const Tasks = () => {
   return (
     <div className="flex">
       <Sidebar />
-      <div className="w-full min-h-screen bg-gray-100 p-5 space-y-5">
+      <div className="min-w-60 w-full min-h-screen bg-gray-100 p-5 space-y-5">
         {show == "tasks" ? (
           <React.Fragment>
             <Dropdown>
