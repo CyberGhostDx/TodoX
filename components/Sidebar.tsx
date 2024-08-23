@@ -19,6 +19,7 @@ import AddCategoryButton from "@/components/Task/AddCategoryButton"
 import AddTagButton from "@/components/Task/AddTagButton"
 import TagEditButton from "@/components/Task/TagEditButton"
 import { ButtonProps } from "@/types"
+import { setShow } from "@/store/features/showSlice"
 
 const Sidebar = () => {
   const dispatch = useAppDispatch()
@@ -29,8 +30,18 @@ const Sidebar = () => {
 
   return (
     <div className="w-80 flex flex-col p-5 space-y-5">
-      <Button icon={<QueueListIcon className="size-5" />}>Tasks</Button>
-      <Button icon={<StarIcon className="size-5" />}>Starred</Button>
+      <Button
+        icon=<QueueListIcon className="size-5" />
+        onClick={() => dispatch(setShow("tasks"))}
+      >
+        Tasks
+      </Button>
+      <Button
+        icon={<StarIcon className="size-5" />}
+        onClick={() => dispatch(setShow("starred"))}
+      >
+        Starred
+      </Button>
       {/*  Categories */}
       <Collapse>
         <CollapseButton

@@ -28,3 +28,5 @@ export type Tag = {
 export type Color = `#${string}`
 
 export type TaskCategories = TaskCategory[]
+
+export type ShowTask = "tasks" | "starred"

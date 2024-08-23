@@ -11,7 +11,7 @@ type Props = {
   tasks: (Task & { category: string })[]
 }
 
-const TaskBoxByDate: React.FC<Props> = ({ name, tasks }) => {
+const TaskBoxByGroup: React.FC<Props> = ({ name, tasks }) => {
   const notFinishedTask = useMemo(
     () => tasks.filter((t) => !t.done) || [],
     [tasks],
@@ -58,4 +58,4 @@ const TaskBoxByDate: React.FC<Props> = ({ name, tasks }) => {
   )
 }
 
-export default TaskBoxByDate
+export default TaskBoxByGroup

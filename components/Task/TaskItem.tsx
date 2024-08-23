@@ -34,6 +34,20 @@ const TaskItem: React.FC<Props> = ({ categoryName, task }) => {
     localStorage.setItem("tasks", JSON.stringify(newTasks))
   }
 
+  const handleSetTaskStarred = (taskID: string) => {
+    dispatch(setTaskStarred({ category: categoryName, taskID }))
+    const newTasks: TaskCategories = JSON.parse(
+      localStorage.getItem("tasks") || "[]",
+    )
+    const categoryIndex = newTasks.findIndex((c) => c.name == categoryName)
+    const index = newTasks[categoryIndex].tasks.findIndex(
+      (task) => task.id == taskID,
+    )
+    newTasks[categoryIndex].tasks[index].starred =
+      !newTasks[categoryIndex].tasks[index].starred
+    localStorage.setItem("tasks", JSON.stringify(newTasks))
+  }
+
   const taskVariants = {
     initial: { height: 0, opacity: 0 },
     enter: { height: "auto", opacity: 1 },
@@ -73,15 +87,8 @@ const TaskItem: React.FC<Props> = ({ categoryName, task }) => {
         <div className="flex items-center">
           <EditButton task={task} categoryName={categoryName} />
           <StarIcon
-            className={`size-4 cursor-pointer hover:fill-yellow-500 hover:stroke-yellow-500 stroke-gray-400 ${task.starred && "fill-amber-400 stroke-amber-400"}`}
-            onClick={() =>
-              dispatch(
-                setTaskStarred({
-                  category: categoryName,
-                  taskID: task.id,
-                }),
-              )
-            }
+            className={`size-4 cursor-pointer hover:fill-yellow-500 hover:stroke-yellow-500 ${task.starred && "fill-amber-400 stroke-amber-400"}`}
+            onClick={() => handleSetTaskStarred(task.id)}
           ></StarIcon>
         </div>
       </div>

@@ -8,7 +8,7 @@ const tagsSlice = createSlice({
   name: "tags",
   initialState,
   reducers: {
-    setTag: (state, action: PayloadAction) => {
+    setTag: (state, action: PayloadAction<Tag[]>) => {
       return action.payload
     },
     addTag: (state, action: PayloadAction<Tag>) => {
