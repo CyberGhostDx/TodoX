@@ -32,17 +32,16 @@ const TaskBoxByGroup: React.FC<Props> = ({ name, tasks }) => {
           ))}
         </AnimatePresence>
       </div>
-      <Collapse>
+      <Collapse isOpen={isOpen}>
         <CollapseButton
-          isOpen={isOpen}
           as={Button}
-          onClick={onToggle}
+          onToggle={onToggle}
           variant="light"
           className="w-full justify-between"
         >
           Done ({finishedTask.length})
         </CollapseButton>
-        <CollapseList isOpen={isOpen}>
+        <CollapseList>
           <div className="space-y-3 flex flex-col ml-2 mt-2 ">
             {finishedTask.map((task) => (
               <TaskItem

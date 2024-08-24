@@ -43,16 +43,15 @@ const Sidebar = () => {
         Starred
       </Button>
       {/*  Categories */}
-      <Collapse>
+      <Collapse isOpen={!categoriesIsOpen}>
         <CollapseButton
-          isOpen={!categoriesIsOpen}
           as={Button}
-          onClick={onToggleCate}
+          onToggle={onToggleCate}
           icon={<ArchiveBoxIcon className="size-5" />}
         >
           Categories
         </CollapseButton>
-        <CollapseList isOpen={!categoriesIsOpen}>
+        <CollapseList>
           {categories.map((c) => (
             <CollapseItem key={c.name}>
               <Checkbox
@@ -74,16 +73,15 @@ const Sidebar = () => {
         </CollapseList>
       </Collapse>
       {/*  Tags */}
-      <Collapse className="!mt-3">
+      <Collapse className="!mt-3" isOpen={!tagsIsOpen}>
         <CollapseButton
-          isOpen={!tagsIsOpen}
           as={Button}
-          onClick={onToggleTag}
+          onToggle={onToggleTag}
           icon={<TagIcon className="size-5" />}
         >
           Tag
         </CollapseButton>
-        <CollapseList isOpen={!tagsIsOpen}>
+        <CollapseList>
           {tags.map((tag) => (
             <div
               className="text-sm px-4 hover:bg-gray-100 rounded-lg"
