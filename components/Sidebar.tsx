@@ -106,9 +106,13 @@ const Sidebar = () => {
 }
 
 const Button: React.FC<ButtonProps> = ({ children, icon, ...props }) => {
+  const show = useAppSelector((state) => state.show)
+  const active =
+    children?.toString().toLowerCase() == show && "bg-blue-600 text-white"
+
   return (
     <NextButton
-      className="bg-gray-200 w-full h-8 flex justify-between text-base"
+      className={`bg-gray-200 w-full h-8 flex justify-between text-base ${active}`}
       {...props}
     >
       <div className="flex items-center space-x-2">

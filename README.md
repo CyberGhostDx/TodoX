@@ -28,5 +28,3 @@ npm run dev
 - Remind Notification
 - Full Responsive
 - PWA (Progressive Web App)
-- Group Task By Date
-- Filter Task with Star (importance)
