@@ -36,14 +36,14 @@ const Tasks = () => {
 
   const starredTask = useMemo(
     () =>
-      tasks
+      categories
         .map((category) =>
           category.tasks
             .filter((task) => task.starred)
             .map((task) => ({ ...task, category: category.name })),
         )
         .flat(),
-    [tasks],
+    [categories],
   )
 
   const groupByDate = useMemo(() => groupTaskByDate(tasks), [tasks])
