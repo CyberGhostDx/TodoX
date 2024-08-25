@@ -124,7 +124,17 @@ const TaskEditButton: React.FC<Props> = ({ categoryName, task }) => {
                   }}
                 >
                   {tags.map((tag) => (
-                    <SelectItem key={tag.name}>{tag.name}</SelectItem>
+                    <SelectItem
+                      key={tag.name}
+                      startContent={
+                        <div
+                          className="w-4 h-4 rounded-md pointer-pointer border mr-1"
+                          style={{ backgroundColor: `${tag.color}` }}
+                        ></div>
+                      }
+                    >
+                      {tag.name}
+                    </SelectItem>
                   ))}
                 </Select>
                 <DatePicker
