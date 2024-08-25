@@ -36,7 +36,7 @@ const AddTaskButton: React.FC<Props> = ({ categoryName }) => {
       id: taskID,
       name: taskName,
       note: taskNote,
-      tag: taskTag,
+      tag: tags.find((tag) => tag.name == taskTag)?.id || "",
       date: taskDate,
       starred: false,
       done: false,

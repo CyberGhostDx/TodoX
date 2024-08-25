@@ -14,10 +14,12 @@ import { HexColorPicker } from "react-colorful"
 import { Tag, Color } from "@/types"
 import { v7 as uuid } from "uuid"
 
+const defaultColor = "1f75ff"
+
 const AddTagButton = () => {
   const dispatch = useAppDispatch()
   const tags = useAppSelector((state) => state.tags)
-  const [color, setColor] = useState("")
+  const [color, setColor] = useState(defaultColor)
   const [isInvalidName, setIsInvalidName] = useState(false)
   const [isInvalidColor, setIsInvalidColor] = useState(false)
   const newTagName = useRef<HTMLInputElement>(null)
@@ -43,7 +45,7 @@ const AddTagButton = () => {
     if (tags.find((t) => t.name == tagName)) return setIsInvalidName(true)
     const newTag = { id: uuid(), name: tagName, color: `#${color}` as Color }
     setIsInvalidName(false)
-    setColor("")
+    setColor(defaultColor)
     onClosePopover()
     dispatch(addTag(newTag))
     const oldTags = JSON.parse(localStorage.getItem("tags") || "[]")
