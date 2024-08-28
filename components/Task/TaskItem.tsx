@@ -95,7 +95,7 @@ const TaskItem: React.FC<Props> = ({ categoryName, task }) => {
       <div className="ml-7 mt-1 text-xs text-gray-500 w-40 break-all">
         {task.note}
       </div>
-      <div className="mt-1 flex space-x-2 ml-6 mb-2 overflow-x-scroll">
+      <div className="mt-1 flex space-x-2 ml-6 mb-2 overflow-x-auto">
         {task?.category && (
           <div className="rounded-xl h-5 border-2 text-xs w-fit flex justify-center items-center px-2 text-white bg-blue-600 border-blue-600">
             {task.category}

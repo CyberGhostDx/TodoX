@@ -9,7 +9,7 @@
 ---
 
 - Next.js
-- Next ui
+- Next UI
 - Framer motion
 - Redux
 
@@ -23,8 +23,9 @@ npm i
 npm run dev
 ```
 
-### Future Feature
+### Future Features
 
 - Remind Notification
 - Full Responsive
 - PWA (Progressive Web App)
+- Drag & Drop
