@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { useRef, useState, useMemo } from "react"
 import { Button } from "@nextui-org/button"
 import { Input } from "@nextui-org/input"
 import { Select, SelectItem } from "@nextui-org/select"
@@ -31,6 +31,11 @@ const TaskEditButton: React.FC<Props> = ({ categoryName, task }) => {
   const datePickerRef = useRef<HTMLInputElement>(null)
 
   const { isOpen, onClose, onToggle } = useDisclosure()
+
+  const currentTag = useMemo(
+    () => tags.find((tag) => tag.id == task.tag),
+    [tags, task],
+  )
 
   const handleSaveEdit = () => {
     const taskName = nameInputRef.current?.value
@@ -114,7 +119,7 @@ const TaskEditButton: React.FC<Props> = ({ categoryName, task }) => {
                   label="tag"
                   size="sm"
                   variant="bordered"
-                  defaultSelectedKeys={[task.tag]}
+                  defaultSelectedKeys={[currentTag?.name || ""]}
                   ref={tagSelectRef}
                   classNames={{
                     trigger: [
